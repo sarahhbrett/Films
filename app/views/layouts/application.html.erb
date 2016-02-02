@@ -8,7 +8,34 @@
 </head>
 <body>
 
+<div id = "banner">
+
+	<%= "Movies we love" %>
+</div>
+
+<div id="nav">
+	<ul>
+	    <li><%=link_to "About", "#" %></li>
+		<li><%=link_to "Movie News", 'http://www.ifi.ie' %></li>
+		<li><%=mail_to "Sarah.brett123@gmail.com", "Mail" %></li>
+		<li><%=link_to "Movies", "movie_path"	%></li>
+	    <% if !logged_in? %>
+			<li><%= link_to "Sign In", login_path %></li>
+		<% else %>
+			<li>Signed in as <%= @current_user.name %></li>
+			<li><%= link_to "Sign Out", logout_path %></li>
+		<%end %>
+	</ul>
+</div>
+
+<% flash.each do |key, value|%>
+	<div class ="flash <%= key %>">
+		<%= value %>
+	</div>
+<% end %>
+
 <%= yield %>
+
 
 </body>
 </html>
